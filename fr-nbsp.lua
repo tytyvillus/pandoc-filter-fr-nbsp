@@ -27,7 +27,7 @@ local function insert_nonbreaking_space_before_last_char(text)
     return text:sub(1, -2) .. space .. text:sub( -1)
 end
 
-local function string_already_has_nbsp(text)
+local function string_already_has_nbsp(text) -- OR PRECEDED BY '\'
     --[[ aarc: I think this overgeneralises:
     return string.find(text, THIN_NBSP)
         or string.find(text, NBSP)
