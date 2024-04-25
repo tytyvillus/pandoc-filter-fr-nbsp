@@ -27,7 +27,7 @@ local function insert_nonbreaking_space_before_last_char(text)
     return text:sub(1, -2) .. space .. text:sub( -1)
 end
 
-local function string_already_has_nbsp(text) -- OR PRECEDED BY '\'
+local function string_already_has_nbsp(text) -- OR IS PRECEDED BY '\'
     --[[ aarc: I think this overgeneralises:
     return string.find(text, THIN_NBSP)
         or string.find(text, NBSP)
@@ -54,6 +54,8 @@ local function space_high_punctuation_and_quotes(inlines)
             inlines[i].text = string.gsub(inlines[i].text, "€", NBSP .. "€")
             inlines[i].text = string.gsub(inlines[i].text, "»", NBSP .. "»")
             inlines[i].text = string.gsub(inlines[i].text, "«", "«" .. NBSP)
+            inlines[i].text = string.gsub(inlines[i].text, "›", NBSP .. "›")
+            inlines[i].text = string.gsub(inlines[i].text, "‹", "‹" .. NBSP)
         end
 
         --
